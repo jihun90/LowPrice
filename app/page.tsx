@@ -1,6 +1,9 @@
-import Image from 'next/image'
+import Link from "next/link";
 
 export default function Home() {
-  return (<>상품 페이지</>
+  return (
+    <div>
+      <Link href='/apple'>Apple</Link>
+    </div>
   )
 }
