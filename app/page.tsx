@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
 export default function Home() {
-  return (<>Hello NextJs</>
+  return (<>상품 페이지</>
   )
 }
