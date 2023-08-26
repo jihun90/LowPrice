@@ -1,7 +1,7 @@
 export default function Apple({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <h3 style={{ display: 'inline', margin: '3px' }}>Apple</h3>
+            <h3 className='text-2xl inline-block font-semibold'>Apple</h3>
             <>{children}</>
         </>
     );

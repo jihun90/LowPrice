@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
     return (
         <>
-            <h1 style={{ display: 'inline' }}>
+            <h1 className='text-4xl inline-block border font-bold'>
                 <Link href='/'>Low Price</Link>
             </h1>
             <>{children}</>
