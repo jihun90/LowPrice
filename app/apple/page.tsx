@@ -1,10 +1,27 @@
+import { searchProduct } from 'api/api';
+
 import Product from './compents/product';
 
-export default function Apple() {
+import type { SearchProductRequest } from '@/api/requestModel';
+import type { SearchProduct } from '@/api/responseModel';
+
+export default async function Apple() {
+    const request: SearchProductRequest = {
+        keyword: '가전디지털 아이폰14 자급제',
+    };
+
+    let productList: SearchProduct[] = [];
+    productList = await searchProduct(request);
+
     return (
         <div>
-            <Product name={'product1'} price={1000} />
-            <Product name={'product2'} price={1000} />
+            {productList.map((product) => (
+                <Product
+                    key={product.productId}
+                    name={product.productName}
+                    price={product.productPrice}
+                />
+            ))}
         </div>
     );
 }
