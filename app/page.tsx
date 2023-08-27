@@ -1,9 +1,5 @@
-import Link from 'next/link';
+import Apple from './apple/page';
 
 export default function Home() {
-    return (
-        <div>
-            <Link href='/apple'>Apple</Link>
-        </div>
-    );
+    return <Apple />;
 }
