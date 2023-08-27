@@ -40,24 +40,18 @@ export async function searchProduct(
     const SECRET_KEY = process.env.SECRET_KEY ?? '';
     const ACCESS_KEY = process.env.ACCESS_KEY ?? '';
 
-    axios.defaults.baseURL = DOMAIN;
-
     const queryString = toQueryString<SearchProductRequest>(info);
-    const authorization = generateHmac(
-        'GET',
-        SEARCH_URL + queryString,
-        SECRET_KEY,
-        ACCESS_KEY
-    );
-    const searchURL: string = DOMAIN + SEARCH_URL + queryString;
+    const url: string = SEARCH_URL + queryString;
+    const authorization = generateHmac('GET', url, SECRET_KEY, ACCESS_KEY);
     const config: AxiosRequestConfig = {
         method: 'GET',
         url: SEARCH_URL,
         headers: { Authorization: authorization },
-        data: searchURL,
+        data: url + queryString,
     };
 
-    const result = await axios.get(searchURL, config);
+    axios.defaults.baseURL = DOMAIN;
+    const result = await axios.get(url, config);
     if (isSearchResult(result.data.data)) {
         productList = result.data.data.productData;
     }
