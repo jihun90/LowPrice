@@ -18,9 +18,12 @@ export default function RootLayout({
             <h1 className='text-4xl inline-block border font-bold'>
                 <Link href='/'>Low Price</Link>
             </h1>
-            <div className='static flex py-2 underline'>
+            <div className='static flex py-2'>
                 <div className='static inline-block mx-1 my-2 w-20 align-top'>
-                    <Link href='/iphone' className='text-base italic mx-1'>
+                    <Link
+                        href='/iphone'
+                        className='text-base italic mx-1 underline'
+                    >
                         아이폰
                     </Link>
                 </div>
