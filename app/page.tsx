@@ -1,5 +1,5 @@
-import Apple from './apple/page';
+import Iphone from '@/iphone/page';
 
 export default function Home() {
-    return <Apple />;
+    return <Iphone />;
 }

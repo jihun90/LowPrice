@@ -20,8 +20,8 @@ export default function RootLayout({
             </h1>
             <div className='static flex py-2 underline'>
                 <div className='static inline-block mx-1 my-2 w-20 align-top'>
-                    <Link href='/apple' className='text-base italic mx-1'>
-                        Apple
+                    <Link href='/iphone' className='text-base italic mx-1'>
+                        아이폰
                     </Link>
                 </div>
                 <div className='static inline-block w-full'>{children}</div>

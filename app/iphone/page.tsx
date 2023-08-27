@@ -24,7 +24,7 @@ const Iphone14PlusSearchRequest: SearchProductRequest = {
     imageSize: '150x150',
 };
 
-export default async function Apple() {
+export default async function Iphone() {
     return (
         <>
             <ProductListView
