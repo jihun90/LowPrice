@@ -16,8 +16,18 @@ export default async function Product(prop: prop) {
                     />
                 </div>
                 <div className='inline-flex basis-full p-2'>{prop.name}</div>
-                <div className='inline-flex basis-60 p-2'>{prop.price}</div>
+                <div className='basis-60 p-2'>
+                    <div className='text-sm text-center'>{getToday()}</div>
+                    <div className='text-center underline font-bold'>{`${prop.price.toLocaleString(
+                        'ko-KR'
+                    )} 원`}</div>
+                </div>
             </div>
         </Link>
     );
+}
+
+function getToday(): string {
+    const today = new Date();
+    return `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 }

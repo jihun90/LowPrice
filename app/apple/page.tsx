@@ -15,19 +15,22 @@ export default async function Apple() {
     productList = await searchProduct(request);
 
     return (
-        <div>
-            {productList.map(
-                (product) =>
-                    product.productName === request.keyword && (
-                        <Product
-                            key={product.productId}
-                            name={product.productName}
-                            price={product.productPrice}
-                            image={product.productImage}
-                            url={product.productUrl}
-                        />
-                    )
-            )}
-        </div>
+        <>
+            <h2 className='text-xl font-semibold'>아이폰14</h2>
+            <div>
+                {productList.map(
+                    (product) =>
+                        product.productName === request.keyword && (
+                            <Product
+                                key={product.productId}
+                                name={product.productName}
+                                price={product.productPrice}
+                                image={product.productImage}
+                                url={product.productUrl}
+                            />
+                        )
+                )}
+            </div>
+        </>
     );
 }

@@ -1,7 +1,13 @@
+import Link from 'next/link';
+
 export default function Apple({ children }: { children: React.ReactNode }) {
     return (
         <>
-            <h3 className='text-2xl inline-block font-semibold'>Apple</h3>
+            <Link href='/apple'>
+                <h3 className='text-2xl inline-block font-semibold mx'>
+                    Apple
+                </h3>
+            </Link>
             <>{children}</>
         </>
     );
