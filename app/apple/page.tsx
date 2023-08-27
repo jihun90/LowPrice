@@ -24,6 +24,7 @@ export default async function Apple() {
                             name={product.productName}
                             price={product.productPrice}
                             image={product.productImage}
+                            url={product.productUrl}
                         />
                     )
             )}
