@@ -3,15 +3,19 @@ import { createHmac } from 'crypto';
 import axios from 'axios';
 import moment from 'moment';
 
-import { isSearchResult } from './responseModel';
+import { isBaseResponse, isSearchResult, isShortenURL } from './responseModel';
 
-import type { SearchProductRequest } from './requestModel';
-import type { SearchProduct } from './responseModel';
+import type { DeepLinkBody, SearchProductRequest } from './requestModel';
+import type { SearchProduct, ShortenURL } from './responseModel';
 import type { AxiosRequestConfig } from 'axios';
 
 const DOMAIN = 'https://api-gateway.coupang.com';
 const BASE_URL = '/v2/providers/affiliate_open_api/apis/openapi/v1';
 const SEARCH_URL = BASE_URL + '/products/search?';
+const DEEP_LINK_URL = BASE_URL + '/deeplink';
+
+const SECRET_KEY = process.env.SECRET_KEY ?? '';
+const ACCESS_KEY = process.env.ACCESS_KEY ?? '';
 
 function generateHmac(
     method: string,
@@ -33,14 +37,11 @@ function generateHmac(
 }
 
 export async function searchProduct(
-    info: SearchProductRequest
+    request: SearchProductRequest
 ): Promise<SearchProduct[]> {
     let productList: SearchProduct[] = [];
 
-    const SECRET_KEY = process.env.SECRET_KEY ?? '';
-    const ACCESS_KEY = process.env.ACCESS_KEY ?? '';
-
-    const queryString = toQueryString<SearchProductRequest>(info);
+    const queryString = toQueryString<SearchProductRequest>(request);
     const url: string = SEARCH_URL + queryString;
     const authorization = generateHmac('GET', url, SECRET_KEY, ACCESS_KEY);
     const config: AxiosRequestConfig = {
@@ -56,6 +57,41 @@ export async function searchProduct(
         productList = result.data.data.productData;
     }
     return productList;
+}
+
+export async function generateDeepLink(
+    request: DeepLinkBody
+): Promise<ShortenURL[]> {
+    const deepLinks: ShortenURL[] = [];
+
+    const authorization = generateHmac(
+        'POST',
+        DEEP_LINK_URL,
+        SECRET_KEY,
+        ACCESS_KEY
+    );
+
+    const config: AxiosRequestConfig = {
+        method: 'POST',
+        url: DEEP_LINK_URL,
+        headers: { Authorization: authorization },
+        data: request,
+    };
+
+    axios.defaults.baseURL = DOMAIN;
+    const reponse = await axios.request(config);
+
+    if (isBaseResponse<ShortenURL>(reponse)) {
+        if (reponse.data.rCode !== 0) return deepLinks;
+
+        reponse.data.data.forEach((shortenURL: unknown) => {
+            if (isShortenURL(shortenURL)) {
+                deepLinks.push(shortenURL);
+            }
+        });
+    }
+
+    return deepLinks;
 }
 
 function toQueryString<T>(obj: T): string {

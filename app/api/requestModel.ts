@@ -5,3 +5,8 @@ export interface SearchProductRequest {
     imageSize?: string;
     srqLinkOnly?: boolean;
 }
+
+export interface DeepLinkBody {
+    coupangUrls: string[]; //max 20
+    subId?: string;
+}

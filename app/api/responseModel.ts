@@ -32,3 +32,13 @@ export interface SearchProduct {
 export function isSearchProduct(arg: unknown): arg is SearchProduct {
     return (arg as SearchProduct).productUrl !== undefined;
 }
+
+export interface ShortenURL {
+    originalUrl: string;
+    shortenUrl: string;
+    landingUrl: string;
+}
+
+export function isShortenURL(arg: unknown): arg is ShortenURL {
+    return (arg as ShortenURL).shortenUrl !== undefined;
+}
