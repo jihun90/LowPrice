@@ -1,6 +1,5 @@
-import { searchProduct } from 'api/api';
-
-import Product from './compents/product';
+import { searchProduct } from '@/api/api';
+import Product from '@/compents/product';
 
 import type { SearchProductRequest } from '@/api/requestModel';
 import type { SearchProduct } from '@/api/responseModel';
