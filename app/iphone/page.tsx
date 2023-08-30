@@ -6,22 +6,22 @@ import type { SearchProduct } from '@/api/responseModel';
 
 const Iphone14SearchRequest: SearchProductRequest = {
     keyword: 'Apple 정품 아이폰 14 자급제',
-    imageSize: '50x50',
+    imageSize: '70x70',
 };
 
 const Iphone14ProSearchRequest: SearchProductRequest = {
     keyword: 'Apple 정품 아이폰 14 Pro 자급제',
-    imageSize: '50x50',
+    imageSize: '70x70',
 };
 
 const Iphone14ProMaxSearchRequest: SearchProductRequest = {
     keyword: 'Apple 정품 아이폰 14 Pro Max 자급제',
-    imageSize: '50x50',
+    imageSize: '70x70',
 };
 
 const Iphone14PlusSearchRequest: SearchProductRequest = {
     keyword: 'Apple 정품 아이폰 14 Plus 자급제',
-    imageSize: '50x50',
+    imageSize: '70x70',
 };
 
 export default async function Iphone() {
